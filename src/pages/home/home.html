@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Callantsoog
+    </ion-title>
+    <ion-buttons end>
+      <button navPush="EvenementToevoegenPage" ion-button>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-list-header>
+      Evenementen
+    </ion-list-header>
+    <ion-item *ngFor="let item of evenementen$ | async" navPush="EvenementDetailPage" [navParams]="{item: item}">
+      <ion-card>
+          <img src="assets/imgs/evenement.jpg"/>
+          <ion-card-content>
+            <ion-card-title>
+                {{ item.titel }}
+              </ion-card-title>
+            <p>
+                {{ item.locatie }}  
+              
+            </p>
+            <p>
+                {{ item.beschrijving }}
+            </p>
+          </ion-card-content>
+        </ion-card>
+    </ion-item>
+
+  </ion-list>
+
+
+    
+</ion-content>
