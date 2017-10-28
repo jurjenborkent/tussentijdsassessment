@@ -37,10 +37,5 @@ export class EvenementToevoegenPage {
     });
   }
 
-  evenementVerwijderen(item: Evenement) {
-    this.evenementen.evenementVerwijderen(item).then(() => {
-      this.toast.show('${item.titel} verwijderd!');
-      this.navCtrl.setRoot('HomePage');
-    });
-  }
+  
 }

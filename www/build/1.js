@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 425:
+/***/ 433:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EvenementToevoegenPageModule", function() { return EvenementToevoegenPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__evenement_toevoegen__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(437);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(130);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EvenementToevoegenPageModule = (function () {
-    function EvenementToevoegenPageModule() {
+var HomeModule = (function () {
+    function HomeModule() {
     }
-    return EvenementToevoegenPageModule;
+    return HomeModule;
 }());
-EvenementToevoegenPageModule = __decorate([
+HomeModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
-        declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__evenement_toevoegen__["a" /* EvenementToevoegenPage */],
-        ],
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__evenement_toevoegen__["a" /* EvenementToevoegenPage */]),
-        ],
+        declarations: [__WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */])]
     })
-], EvenementToevoegenPageModule);
+], HomeModule);
 
-//# sourceMappingURL=evenement-toevoegen.module.js.map
+//# sourceMappingURL=home.module.js.map
 
 /***/ }),
 
-/***/ 428:
+/***/ 437:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EvenementToevoegenPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_evenementen_evenementen_service__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_evenementen_evenementen_service__ = __webpack_require__(277);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,49 +62,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the EvenementToevoegenPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var EvenementToevoegenPage = (function () {
-    function EvenementToevoegenPage(navCtrl, navParams, evenementen) {
+var HomePage = (function () {
+    function HomePage(navCtrl, evenementen) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
         this.evenementen = evenementen;
-        this.evenement = {
-            titel: '',
-            beschrijving: '',
-            locatie: '',
-        };
+        this.evenementen$ = this.evenementen
+            .getEvenementen() //Database lijst
+            .snapshotChanges() //Key en Waarde
+            .map(function (changes) {
+            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        });
     }
-    EvenementToevoegenPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad EvenementToevoegenPage');
-    };
-    EvenementToevoegenPage.prototype.evenementToevoegen = function (item) {
-        var _this = this;
-        this.evenementen.evenementToevoegen(item).then(function (ref) {
-            _this.navCtrl.setRoot('HomePage', { key: ref.key });
-        });
-    };
-    EvenementToevoegenPage.prototype.evenementVerwijderen = function (item) {
-        var _this = this;
-        this.evenementen.evenementVerwijderen(item).then(function () {
-            _this.toast.show('${item.titel} verwijderd!');
-            _this.navCtrl.setRoot('HomePage');
-        });
-    };
-    return EvenementToevoegenPage;
+    return HomePage;
 }());
-EvenementToevoegenPage = __decorate([
+HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-evenement-toevoegen',template:/*ion-inline-start:"/Users/Jurjen/Projecten/ionic/odetteApp/src/pages/evenement-toevoegen/evenement-toevoegen.html"*/'<!--\n  Generated template for the EvenementToevoegenPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Evenement Toevoegen</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-item> \n    <ion-input [(ngModel)]="evenement.titel" type="text" placeholder="Titel"></ion-input>\n  </ion-item>\n\n  <ion-item> \n      <ion-input [(ngModel)]="evenement.beschrijving" type="text" placeholder="Beschrijving"></ion-input>\n  </ion-item>\n\n  <ion-item> \n      <ion-input [(ngModel)]="evenement.locatie" type="text" placeholder="Locatie"></ion-input>\n  </ion-item>\n\n  <button ion-button block clear (click)="evenementToevoegen(evenement)">Evenement toevoegen</button>\n  \n\n</ion-content>\n'/*ion-inline-end:"/Users/Jurjen/Projecten/ionic/odetteApp/src/pages/evenement-toevoegen/evenement-toevoegen.html"*/,
+        selector: 'page-home',template:/*ion-inline-start:"/Users/Jurjen/Projecten/ionic/odetteApp/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Odette App\n    </ion-title>\n    <ion-buttons end>\n      <button navPush="EvenementToevoegenPage" ion-button>\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list>\n    <ion-list-header>\n      Evenementen\n    </ion-list-header>\n    <ion-item *ngFor="let item of evenementen$ | async" navPush="EvenementDetailPage" [navParams]="{item: item}">\n      <ion-card>\n          <img src="assets/imgs/evenement.jpg"/>\n          <ion-card-content>\n            <ion-card-title>\n                {{ item.titel }}\n              </ion-card-title>\n            <p>\n                {{ item.locatie }}\n\n            </p>\n            <p>\n                {{ item.beschrijving }}\n            </p>\n          </ion-card-content>\n        </ion-card>\n    </ion-item>\n\n  </ion-list>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/Jurjen/Projecten/ionic/odetteApp/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_evenementen_evenementen_service__["a" /* EvenementenService */]])
-], EvenementToevoegenPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_evenementen_evenementen_service__["a" /* EvenementenService */]])
+], HomePage);
 
-//# sourceMappingURL=evenement-toevoegen.js.map
+//# sourceMappingURL=home.js.map
 
 /***/ })
 

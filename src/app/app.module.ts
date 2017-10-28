@@ -8,20 +8,24 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { EvenementenService } from '../services/evenementen/evenementen.service';
+import { AngularFireAuthModule } from "angularfire2/auth";
 
 @NgModule({
   declarations: [
     MyApp,
+    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+
   ],
   providers: [
     StatusBar,

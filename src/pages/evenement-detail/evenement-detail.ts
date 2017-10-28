@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Evenement } from '../../models/evenement/evenement.model';
+import { EvenementenService } from '../../services/evenementen/evenementen.service';
 
 /**
  * Generated class for the EvenementDetailPage page.
@@ -18,11 +19,17 @@ export class EvenementDetailPage {
 
   item: Evenement;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private evenementen: EvenementenService) {
   }
 
   ionViewWillLoad() {
     this.item = this.navParams.get('item');
+  }
+
+  evenementVerwijderen(item: Evenement) {
+    this.evenementen.evenementVerwijderen(this.navParams.get('item')).then(() => {
+      this.navCtrl.setRoot('HomePage');
+    });
   }
 
   
